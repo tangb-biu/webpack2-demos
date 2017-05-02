@@ -23,13 +23,19 @@ module.exports = (env) => {
 					use:['babel-loader']
 				},
 				{
-					test: /\.(html|svg|jpe?g|gif|ttf|woff2?)$/,
+					test: /\.(svg|jpe?g|gif|ttf|woff2?)$/,
 					use: {
-							loader: 'file-loader',
-							options: {
-								name: '[name]-[hash:8].[ext]'
-							}
+						loader: 'url-loader',
+						options: {
+							name: '[name]-[hash:8].[ext]'
 						}
+					}
+				},
+				{
+					test: /\.html$/,
+					use: {
+						loader: 'html-loader',
+					}
 				},
 				{
 					test: /\.s?css$/,
@@ -68,7 +74,7 @@ module.exports = (env) => {
 		devServer: {
 			contentBase: __dirname + '/src',
 			historyApiFallback: true,
-			port: '8088',
+			port: '8080',
 			host: 'localhost',
 			//hot: true
 		}
